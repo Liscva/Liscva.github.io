@@ -370,10 +370,10 @@
             <div id="articleContent">
                 <p>在spring.core包中有一个叫StopWatch的工具。用来记录程序的执行时间，通过该工具类，我们可以很优雅的记录或者打印执行时间日志</p>
 <p>在springboot启动日志中时常能见到这么一行打印springboot启动时长的日志，那么他是怎么来的呢？</p>
-<p>![image-20201207102757679](List快速转Map (copy)/image-20201207102757679.png)</p>
+<p><img src="/2020/12/07/java/%E5%B0%8F%E6%8A%80%E5%B7%A7/%E4%BC%98%E9%9B%85%E8%AE%B0%E5%BD%95%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E5%B7%A5%E5%85%B7/image-20201207102757679.png" alt="image-20201207102757679"></p>
 <p>在SpringAppliction的run方法中，声明了一个stopWatch，然后在StareupInfoLogger中对这个对象进行了输出处理</p>
-<p>![image-20201207102839812](List快速转Map (copy)/image-20201207102839812.png)</p>
-<p>![image-20201207102903464](List快速转Map (copy)/image-20201207102903464.png)</p>
+<p><img src="/2020/12/07/java/%E5%B0%8F%E6%8A%80%E5%B7%A7/%E4%BC%98%E9%9B%85%E8%AE%B0%E5%BD%95%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E5%B7%A5%E5%85%B7/image-20201207102839812.png" alt="image-20201207102839812"></p>
+<p><img src="/2020/12/07/java/%E5%B0%8F%E6%8A%80%E5%B7%A7/%E4%BC%98%E9%9B%85%E8%AE%B0%E5%BD%95%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E5%B7%A5%E5%85%B7/image-20201207102903464.png" alt="image-20201207102903464"></p>
 <p>然后我们再写个测试用例</p>
 <pre class=" language-java"><code class="language-java"><span class="token keyword">import</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>util<span class="token punctuation">.</span>StopWatch<span class="token punctuation">;</span>
 
@@ -400,7 +400,7 @@
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>stopWatch<span class="token punctuation">.</span><span class="token function">prettyPrint</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-<p>![image-20201207103116334](List快速转Map (copy)/image-20201207103116334.png)</p>
+<p><img src="/2020/12/07/java/%E5%B0%8F%E6%8A%80%E5%B7%A7/%E4%BC%98%E9%9B%85%E8%AE%B0%E5%BD%95%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E5%B7%A5%E5%85%B7/image-20201207103116334.png" alt="image-20201207103116334"></p>
 <p>值得注意的是，spring 5版本默认输出的是纳秒，早期版本是毫秒，不过无伤大雅，StopWatch内部也有转换方法</p>
 <script>
         document.querySelectorAll('.github-emoji')

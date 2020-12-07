@@ -370,6 +370,58 @@
             <div id="articleContent">
                 <p>安装环境是centos7,由于kafka很多核心基于zookeeper特性实现,而zookeeper是java编写运行在JVM上,所以需要保证有java8以上的JDK环境</p>
 <h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><p><a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/elasticsearch">https://www.elastic.co/cn/downloads/elasticsearch</a></p>
+<h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><pre class=" language-shell"><code class="language-shell">[root@localhost ~]# cd /opt/
+[root@localhost opt]# ll
+total 0
+drwxr-xr-x. 10 elsearch elsearch 167 Oct 12 09:30 elasticsearch-7.9.2
+drwxr-xr-x.  7 root     root     245 Oct 12 09:26 jdk1.8.0_191
+drwxr-xr-x.  7 root     root     101 Oct 12 09:26 kafka_2.12-2.6.0
+[root@localhost opt]#
+# 1.添加新用户,es6不能用root用户启动
+[root@localhost opt]# adduser elsearch
+# 2.在root用户下将elasticsearch-7.9.2文件夹权限赋予给新建的elsearch用户
+[root@localhost opt]# chown -R elsearch:elsearch elasticsearch-7.9.2
+# 3.切换到新用户,启动es程序
+[root@localhost opt]# su elsearch
+[elsearch@localhost opt]$ cd elasticsearch-7.9.2/
+[elsearch@localhost elasticsearch-7.9.2]$ ./bin/elasticsearch
+
+# 在安装路径下的config/elasticsearch.yml文件中， 
+# 添加 network.host: 0.0.0.0 表示所有用户可访问 即远程访问
+
+#安装中文分词库
+#进入 到/usr/elasticsearch/bin 
+#执行  ./elasticsearch-plugin插件命令 安装插件
+
+./elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.9.2/elasticsearch-analysis-ik-7.9.2.zip</code></pre>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="新装es启动时，会遇到以下错误情况："><a href="#新装es启动时，会遇到以下错误情况：" class="headerlink" title="新装es启动时，会遇到以下错误情况："></a>新装es启动时，会遇到以下错误情况：</h3><blockquote>
+<p>ERROR: [3] bootstrap checks failed<br>[1]: max file descriptors [4096] for elasticsearch process is too low, increase to at least [65536]</p>
+<p>编辑 /etc/security/limits.conf，追加以下内容；</p>
+<ul>
+<li>soft nofile 65536</li>
+<li>hard nofile 65536</li>
+</ul>
+<p>[2]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</p>
+<p>编辑 /etc/sysctl.conf，追加以下内容：</p>
+<p>vm.max_map_count=655360</p>
+<p>保存后，执行：</p>
+<p>sysctl -p</p>
+<p>[3]: max number of threads [2048] for user [tongtech] is too low, increase to at least [4096]</p>
+<p>错误原因：启动检查未通过elasticsearch用户的最大线程数太低</p>
+<p>vim /etc/security/limits.d/90-nproc.conf 将2048改为4096或更大</p>
+<p>[4]: the default discovery settings are unsuitable for production use; at least one of [discovery.seed_hosts, discovery.seed_providers, cluster.initial_master_nodes] must be configured</p>
+<p>解决办法：</p>
+<p>修改elasticsearch.yml </p>
+<p>cluster.initial_master_nodes: [“node-1”]</p>
+<p>这个的话，这里的node-1是上面一个默认的记得打开就可以了</p>
+<p>[5]max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</p>
+<p>解决办法：</p>
+<p>切换至root用户</p>
+<p>su root</p>
+<p>修改limits.d目录下的配置文件：</p>
+<p>vi /etc/security/limits.d/90-nproc.conf</p>
+<p>改为4096</p>
+</blockquote>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {

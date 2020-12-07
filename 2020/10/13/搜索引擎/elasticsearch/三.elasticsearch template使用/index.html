@@ -1,0 +1,1200 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="elasticsearch template使用, Liscva Blogs">
+    <meta name="description" content="个人博客网站">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>elasticsearch template使用 | Liscva Blogs</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Liscva Blogs</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Liscva Blogs</div>
+        <div class="logo-desc">
+            
+            个人博客网站
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">elasticsearch template使用</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">
+                                <span class="chip bg-color">搜索引擎</span>
+                            </a>
+                        
+                            <a href="/tags/elasticsearch/">
+                                <span class="chip bg-color">elasticsearch</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/elasticsearch/" class="post-category">
+                                elasticsearch
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-10-13
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="1-什么是索引模板"><a href="#1-什么是索引模板" class="headerlink" title="1 什么是索引模板"></a>1 什么是索引模板</h1><blockquote>
+<p>索引模板: 就是把已经创建好的某个索引的参数设置(settings)和索引映射(mapping)保存下来作为模板, 在创建新索引时, 指定要使用的模板名, 就可以直接重用已经定义好的模板中的设置和映射.</p>
+</blockquote>
+<h2 id="1-1-索引模板中的内容"><a href="#1-1-索引模板中的内容" class="headerlink" title="1.1 索引模板中的内容"></a>1.1 索引模板中的内容</h2><p>(1) settings: 指定index的配置信息, 比如分片数、副本数, tranlog同步条件、refresh策略等信息;</p>
+<p>(2) mappings: 指定index的内部构建信息, 主要有:</p>
+<blockquote>
+<p>① <code>_all</code>: All Field字段, 如果开启, <code>_all</code>字段就会把所有字段的内容都包含进来,检索的时候可以不用指定字段查询 —— 会检索多个字段, 设置方式: <code>"_all": {"enabled": true}</code>;</p>
+<blockquote>
+<p>在ES 6.0开始, <code>_all</code>字段被禁用了, 作为替换, 可以通过<code>copy_to</code>自定义实现all字段的功能.</p>
+</blockquote>
+<p>② <code>_source</code>: Source Field字段, ES为每个文档都保存一份源数据, 如果不开启, 也就是<code>"_source": {"enabled": false}</code>, 查询的时候就只会返回文档的ID, 其他的文档内容需要通过Fields字段到索引中再次获取, 效率很低. 但若开启, 索引的体积会更大, 此时就可以通过Compress进行压缩, 并通过<code>inclueds</code>、<code>excludes</code>等方式在field上进行限制 —— 指定义允许哪些字段存储到<code>_source</code>中, 哪些不存储;</p>
+<p>③ <code>properties</code>: <strong>最重要的配置</strong>, 是对索引结构和文档字段的设置.</p>
+</blockquote>
+<h2 id="1-2-索引模板的用途"><a href="#1-2-索引模板的用途" class="headerlink" title="1.2 索引模板的用途"></a>1.2 索引模板的用途</h2><p><strong>索引模板一般用在时间序列相关的索引中.</strong></p>
+<p>—— 也就是说, 如果你需要每间隔一定的时间就建立一次索引, 你只需要配置好索引模板, 以后就可以直接使用这个模板中的设置, 不用每次都设置settings和mappings.</p>
+<p><strong>索引模板一般与索引别名一起使用.</strong> 关于索引别名, 后续研究之后再做补充.</p>
+<h1 id="2-创建索引模板"><a href="#2-创建索引模板" class="headerlink" title="2 创建索引模板"></a>2 创建索引模板</h1><p>创建一个商品的索引模板的示例:</p>
+<p>(1) ES 6.0之前的版本:</p>
+<pre class=" language-json"><code class="language-json">PUT _template/shop_template
+<span class="token punctuation">{</span>
+    <span class="token property">"template"</span><span class="token operator">:</span> <span class="token string">"shop*"</span><span class="token punctuation">,</span>       // 可以通过<span class="token string">"shop*"</span>来适配
+    <span class="token property">"order"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>                // 模板的权重<span class="token punctuation">,</span> 多个模板的时候优先匹配用<span class="token punctuation">,</span> 值越大<span class="token punctuation">,</span> 权重越高
+    <span class="token property">"settings"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"number_of_shards"</span><span class="token operator">:</span> <span class="token number">1</span>  // 分片数量<span class="token punctuation">,</span> 可以定义其他配置项
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"aliases"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"alias_1"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>          // 索引对应的别名
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"mappings"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"_default"</span><span class="token operator">:</span> <span class="token punctuation">{</span>          // 默认的配置<span class="token punctuation">,</span> ES <span class="token number">6.0</span>开始不再支持
+            <span class="token property">"_source"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token property">"enabled"</span><span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>  // 是否保存字段的原始值
+            <span class="token property">"_all"</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token property">"enabled"</span><span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>     // 禁用_all字段
+            <span class="token property">"dynamic"</span><span class="token operator">:</span> <span class="token string">"strict"</span>               // 只用定义的字段<span class="token punctuation">,</span> 关闭默认的自动类型推断
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token property">"type1"</span><span class="token operator">:</span> <span class="token punctuation">{</span>             // 默认的文档类型设置为type1<span class="token punctuation">,</span> ES <span class="token number">6.0</span>开始只支持一种type<span class="token punctuation">,</span> 所以这里不需要指出
+        */
+            <span class="token property">"_source"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token property">"enabled"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">"properties"</span><span class="token operator">:</span> <span class="token punctuation">{</span>        // 字段的映射
+                <span class="token property">"@timestamp"</span><span class="token operator">:</span> <span class="token punctuation">{</span>    // 具体的字段映射
+                    <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"date"</span><span class="token punctuation">,</span>           
+                    <span class="token property">"format"</span><span class="token operator">:</span> <span class="token string">"yyyy-MM-dd HH:mm:ss"</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token property">"@version"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">"doc_values"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+                    <span class="token property">"index"</span><span class="token operator">:</span> <span class="token string">"not_analyzed"</span><span class="token punctuation">,</span>  // 不索引
+                    <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"string"</span>          // string类型
+                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token property">"logLevel"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"long"</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>(2) ES 6.0之后的版本:</p>
+<pre class=" language-json"><code class="language-json">PUT _template/shop_template
+<span class="token punctuation">{</span>
+    <span class="token property">"index_patterns"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"shop*"</span><span class="token punctuation">,</span> <span class="token string">"bar*"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>       // 可以通过<span class="token string">"shop*"</span>和<span class="token string">"bar*"</span>来适配<span class="token punctuation">,</span> template字段已过期
+    <span class="token property">"order"</span><span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>                // 模板的权重<span class="token punctuation">,</span> 多个模板的时候优先匹配用<span class="token punctuation">,</span> 值越大<span class="token punctuation">,</span> 权重越高
+    <span class="token property">"settings"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"number_of_shards"</span><span class="token operator">:</span> <span class="token number">1</span>  // 分片数量<span class="token punctuation">,</span> 可以定义其他配置项
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"aliases"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"alias_1"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>          // 索引对应的别名
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"mappings"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        // ES <span class="token number">6.0</span>开始只支持一种type<span class="token punctuation">,</span> 名称为“_doc”
+        <span class="token property">"_doc"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">"_source"</span><span class="token operator">:</span> <span class="token punctuation">{</span>            // 是否保存字段的原始值
+                <span class="token property">"enabled"</span><span class="token operator">:</span> <span class="token boolean">false</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token property">"properties"</span><span class="token operator">:</span> <span class="token punctuation">{</span>        // 字段的映射
+                <span class="token property">"@timestamp"</span><span class="token operator">:</span> <span class="token punctuation">{</span>    // 具体的字段映射
+                    <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"date"</span><span class="token punctuation">,</span>           
+                    <span class="token property">"format"</span><span class="token operator">:</span> <span class="token string">"yyyy-MM-dd HH:mm:ss"</span>
+                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token property">"@version"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">"doc_values"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+                    <span class="token property">"index"</span><span class="token operator">:</span> <span class="token string">"false"</span><span class="token punctuation">,</span>   // 设置为<span class="token boolean">false</span><span class="token punctuation">,</span> 不索引
+                    <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"text"</span>      // text类型
+                <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                <span class="token property">"logLevel"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                    <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"long"</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>说明:</p>
+<blockquote>
+<p><strong>直接修改mapping的优先级 &gt; 索引模板中的设置</strong>;</p>
+<p>索引匹配了多个template, 当属性等配置出现不一致时, 以模板的权重(order属性的值)为准, 值越大越优先, order的默认值是0.</p>
+<p>ES 6.0之后的版本API变化较大, 请重点关注.</p>
+</blockquote>
+<h1 id="3-查看索引模板"><a href="#3-查看索引模板" class="headerlink" title="3 查看索引模板"></a>3 查看索引模板</h1><p>(1) 查看示例:</p>
+<pre class=" language-json"><code class="language-json">GET _template                // 查看所有模板
+GET _template/temp*          // 查看与通配符相匹配的模板
+GET _template/temp1<span class="token punctuation">,</span>temp2    // 查看多个模板
+GET _template/shop_template  // 查看指定模板</code></pre>
+<p>(2) 判断模板是否存在:</p>
+<p>判断示例:</p>
+<pre class=" language-json"><code class="language-json">HEAD _template/shop_tem</code></pre>
+<p>结果说明:</p>
+<blockquote>
+<p>a) 如果存在, 响应结果是: <code>200 - OK</code><br>b) 如果不存在, 响应结果是: <code>404 - Not Found</code></p>
+</blockquote>
+<h1 id="4-删除索引模板"><a href="#4-删除索引模板" class="headerlink" title="4 删除索引模板"></a>4 删除索引模板</h1><p>删除示例:</p>
+<pre class=" language-json"><code class="language-json">DELETE _template/shop_template    // 删除上述创建的模板</code></pre>
+<p>如果模板不存在, 将抛出如下错误:</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"error"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"root_cause"</span> <span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">"type"</span> <span class="token operator">:</span> <span class="token string">"index_template_missing_exception"</span><span class="token punctuation">,</span>
+        <span class="token property">"reason"</span> <span class="token operator">:</span> <span class="token string">"index_template [shop_temp] missing"</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"type"</span> <span class="token operator">:</span> <span class="token string">"index_template_missing_exception"</span><span class="token punctuation">,</span>
+    <span class="token property">"reason"</span> <span class="token operator">:</span> <span class="token string">"index_template [shop_temp] missing"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"status"</span> <span class="token operator">:</span> <span class="token number">404</span>
+<span class="token punctuation">}</span></code></pre>
+<h1 id="5-模板的使用建议"><a href="#5-模板的使用建议" class="headerlink" title="5 模板的使用建议"></a>5 模板的使用建议</h1><h2 id="5-1-一个index中不能有多个type"><a href="#5-1-一个index中不能有多个type" class="headerlink" title="5.1 一个index中不能有多个type"></a>5.1 一个index中不能有多个type</h2><p>—— Elasticsearch 6.X版本中已经不支持在同一个index下创建多个type.</p>
+<blockquote>
+<p>6.X之前的版本中, 父子文档的实现是一个索引中定义多个type, 6.X中实现方式改变为join方式.</p>
+</blockquote>
+<p>如果在同一个index下创建多个type, 会报出如下错误信息:</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"error"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"root_cause"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"illegal_argument_exception"</span><span class="token punctuation">,</span>
+        <span class="token property">"reason"</span><span class="token operator">:</span> <span class="token string">"Rejecting mapping update to [book_shop] as the final mapping would have more than 1 type: [books, novel_book]"</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"illegal_argument_exception"</span><span class="token punctuation">,</span>
+    <span class="token property">"reason"</span><span class="token operator">:</span> <span class="token string">"Rejecting mapping update to [book_shop] as the final mapping would have more than 1 type: [books, novel_book]"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">"status"</span><span class="token operator">:</span> <span class="token number">400</span>
+<span class="token punctuation">}</span></code></pre>
+<p>错误信息指出: 拒绝对[book_shop]的mapping信息进行修改, 因为它作为final mapping(终态的mapping), 将会有超过2个type.</p>
+<h2 id="5-2-设置-source-false"><a href="#5-2-设置-source-false" class="headerlink" title="5.2 设置_source = false"></a>5.2 设置_source = false</h2><p>如果我们只关心查询的评分结果, 而不用查看原始文档的内容, 就设置<code>"_source": {"enabled": false}</code>.</p>
+<p>—— 这能节省磁盘空间并减少磁盘IO上的开销.</p>
+<blockquote>
+<p>我们可以把原始的数据存储在MySQL、HBase等数据库, 从ES中得到文档的ID之后, 再到相应的数据库中获取数据.</p>
+</blockquote>
+<h2 id="5-3-设置-all-false"><a href="#5-3-设置-all-false" class="headerlink" title="5.3 设置_all = false"></a>5.3 设置_all = false</h2><p>如果能够确切地知道要对哪个field做查询操作, 就设置<code>"_all": {"enabled": false}</code>.</p>
+<p>—— 这能实现性能提升, 并节省存储空间.<br>而在6.X版本开始, <code>_all</code>字段也不再支持了, ES官方建议我们通过<code>copy_to</code>自定义我们自己的all字段.</p>
+<h2 id="5-4-设置dynamic-strict"><a href="#5-4-设置dynamic-strict" class="headerlink" title="5.4 设置dynamic = strict"></a>5.4 设置dynamic = strict</h2><p>如果我们的数据是结构化数据, 就设置<code>"dynamic": "strict"</code>.</p>
+<p>—— 把动态类型判断设置为严格, 也就是不允许ES为插入的数据进行动态类型设置, 避免注入脏数据.</p>
+<h2 id="5-5-使用keyword类型"><a href="#5-5-使用keyword类型" class="headerlink" title="5.5 使用keyword类型"></a>5.5 使用keyword类型</h2><p>如果我们只关心精确匹配, 就设置<code>test_field: {"type": "keyword"}</code>.</p>
+<p>—— keyword类型要比text类型的性能更高, 并且还能节省磁盘的存储空间.</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">李诗诚</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://localhost:4000/2020/10/13/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/elasticsearch/%E4%B8%89.elasticsearch%20template%E4%BD%BF%E7%94%A8/">http://localhost:4000/2020/10/13/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/elasticsearch/%E4%B8%89.elasticsearch%20template%E4%BD%BF%E7%94%A8/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">李诗诚</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">
+                                    <span class="chip bg-color">搜索引擎</span>
+                                </a>
+                            
+                                <a href="/tags/elasticsearch/">
+                                    <span class="chip bg-color">elasticsearch</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/10/15/JVM%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E4%B8%80.jvm%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E7%9A%84%E5%8C%BA%E5%9F%9F%E5%88%92%E5%88%86/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="一.jvm内存管理的区域划分">
+                        
+                        <span class="card-title">一.jvm内存管理的区域划分</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            前言在java程序中,java程序员将内存的管理权限交给JVM来控制,不需要手动释放内存,不容易出现内存泄漏或者内存溢出的问题,看似方便的同时也带来了新的问题,一旦出现内存泄漏和内存溢出,若果不是特别了解JVM内存管理的开发人员是很难排查解
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/java/" class="post-category">
+                                    java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/jvm/">
+                        <span class="chip bg-color">jvm</span>
+                    </a>
+                    
+                    <a href="/tags/java/">
+                        <span class="chip bg-color">java</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/10/12/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/elasticsearch/%E4%BA%8C.elasticsearch%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="二.elasticsearch基本概念">
+                        
+                        <span class="card-title">二.elasticsearch基本概念</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Node 与 ClusterElastic 本质上是一个分布式数据库，允许多台服务器协同工作，每台服务器可以运行多个 Elastic 实例。
+单个 Elastic 实例称为一个节点（node）。一组节点构成一个集群（cluster）。
+In
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/elasticsearch/" class="post-category">
+                                    elasticsearch
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">
+                        <span class="chip bg-color">搜索引擎</span>
+                    </a>
+                    
+                    <a href="/tags/elasticsearch/">
+                        <span class="chip bg-color">elasticsearch</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">李诗诚</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Liscva" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:liscva@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=3214444445" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 3214444445" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

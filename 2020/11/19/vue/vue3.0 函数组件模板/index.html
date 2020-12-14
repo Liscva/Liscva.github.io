@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="vue3.0 插槽模板, Liscva Blogs">
+    <meta name="keywords" content="vue3.0 函数组件模板, Liscva Blogs">
     <meta name="description" content="个人博客网站">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>vue3.0 插槽模板 | Liscva Blogs</title>
+    <title>vue3.0 函数组件模板 | Liscva Blogs</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -201,12 +201,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">vue3.0 插槽模板</h1>
+                    <h1 class="description center-align post-title">vue3.0 函数组件模板</h1>
                 </div>
             </div>
         </div>
@@ -364,55 +364,50 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <pre class=" language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>template<span class="token operator">></span>
-  <span class="token operator">&lt;</span>table<span class="token operator">></span>
-    <span class="token operator">&lt;</span>tr<span class="token operator">></span>
-      <span class="token operator">&lt;</span>th<span class="token operator">></span>默认插槽：<span class="token operator">&lt;</span><span class="token operator">/</span>th<span class="token operator">></span>
-      <span class="token operator">&lt;</span>td<span class="token operator">></span><span class="token operator">&lt;</span>slot <span class="token operator">/</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">></span>
-    <span class="token operator">&lt;</span>tr<span class="token operator">></span>
-      <span class="token operator">&lt;</span>th<span class="token operator">></span>具名插槽：<span class="token operator">&lt;</span><span class="token operator">/</span>th<span class="token operator">></span>
-      <span class="token operator">&lt;</span>td<span class="token operator">></span><span class="token operator">&lt;</span>slot name<span class="token operator">=</span><span class="token string">"footer"</span> <span class="token operator">/</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">></span>
-    <span class="token operator">&lt;</span>tr<span class="token operator">></span>
-      <span class="token operator">&lt;</span>th<span class="token operator">></span>传参插槽：<span class="token operator">&lt;</span><span class="token operator">/</span>th<span class="token operator">></span>
-      <span class="token operator">&lt;</span>td<span class="token operator">></span><span class="token operator">&lt;</span>slot name<span class="token operator">=</span><span class="token string">"bottom"</span> <span class="token punctuation">:</span>color<span class="token operator">=</span><span class="token string">"color"</span> <span class="token operator">/</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">></span>
-    <span class="token operator">&lt;</span>tr<span class="token operator">></span>
-      <span class="token operator">&lt;</span>th<span class="token operator">></span>传对象参插槽：<span class="token operator">&lt;</span><span class="token operator">/</span>th<span class="token operator">></span>
-      <span class="token operator">&lt;</span>td<span class="token operator">></span><span class="token operator">&lt;</span>slot name<span class="token operator">=</span><span class="token string">"object"</span> v<span class="token operator">-</span>bind<span class="token operator">=</span><span class="token string">"{ old, name }"</span> <span class="token operator">/</span><span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">/</span>td<span class="token operator">></span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>tr<span class="token operator">></span>
-  <span class="token operator">&lt;</span><span class="token operator">/</span>table<span class="token operator">></span>
+                <pre class=" language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// 函数式组件， 该组件会返回鼠标在屏幕上的坐标值</span>
+<span class="token comment" spellcheck="true">// toFefs 是将 reactive 对象的所有 key 都转化为 ref 值</span>
+<span class="token comment" spellcheck="true">// 这样，在引入使用的组件中，就可以 用 const { x, y } = xx 来使用这些 key 对应的 value 了</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> onMounted<span class="token punctuation">,</span> onUnmounted<span class="token punctuation">,</span> reactive<span class="token punctuation">,</span> toRefs <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vue'</span>
+
+<span class="token comment" spellcheck="true">// 这里导出，就不是对象，而是一个函数了。</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 定义一个准备导出的对象数据</span>
+  <span class="token keyword">const</span> position <span class="token operator">=</span> <span class="token function">reactive</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    x<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    y<span class="token punctuation">:</span> <span class="token number">0</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+  <span class="token comment" spellcheck="true">// 定义一个会改变数据的函数</span>
+  <span class="token keyword">const</span> update <span class="token operator">=</span> page <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    position<span class="token punctuation">.</span>x <span class="token operator">=</span> page<span class="token punctuation">.</span>pageX
+    position<span class="token punctuation">.</span>y <span class="token operator">=</span> page<span class="token punctuation">.</span>pageY
+  <span class="token punctuation">}</span>
+  <span class="token comment" spellcheck="true">// 使用生命周期，绑定和移除事件</span>
+  onMounted <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'mousemove'</span><span class="token punctuation">,</span> update<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  onUnmounted <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    window<span class="token punctuation">.</span><span class="token function">removeEventListener</span><span class="token punctuation">(</span><span class="token string">'mousemove'</span><span class="token punctuation">,</span> update<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token comment" spellcheck="true">// 将 reactive 对象 转化为 ref 响应式的值，并返回</span>
+  <span class="token keyword">return</span> <span class="token function">toRefs</span><span class="token punctuation">(</span>position<span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>template<span class="token operator">></span>
+  <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"home"</span><span class="token operator">></span>
+    鼠标 x 轴 坐标 <span class="token operator">></span><span class="token operator">></span><span class="token operator">></span> <span class="token operator">&lt;</span>span <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"red"</span><span class="token operator">></span><span class="token punctuation">{</span><span class="token punctuation">{</span> x <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span> <span class="token operator">&lt;</span>br<span class="token operator">></span>
+    鼠标 y 轴 坐标 <span class="token operator">></span><span class="token operator">></span><span class="token operator">></span> <span class="token operator">&lt;</span>span <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"red"</span><span class="token operator">></span><span class="token punctuation">{</span><span class="token punctuation">{</span> y <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">></span> <span class="token operator">&lt;</span>br<span class="token operator">></span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
 <span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
 <span class="token operator">&lt;</span>script<span class="token operator">></span>
+<span class="token comment" spellcheck="true">// 引用我们开发的子组件</span>
+<span class="token keyword">import</span> Position <span class="token keyword">from</span> <span class="token string">'@/components/Position.js'</span>
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
   setup <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token punctuation">{</span>
-      color<span class="token punctuation">:</span> <span class="token string">'red'</span><span class="token punctuation">,</span>
-      old<span class="token punctuation">:</span> <span class="token number">34</span><span class="token punctuation">,</span>
-      name<span class="token punctuation">:</span> <span class="token string">'FungLeo'</span>
-    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">// 引用函数子组件并展开它的值</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> x<span class="token punctuation">,</span> y <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">Position</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">// 将他的值 return 出去</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span> x<span class="token punctuation">,</span> y <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre>
-<pre class=" language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span>template<span class="token operator">></span>
-  <span class="token operator">&lt;</span>Child<span class="token operator">></span>
-    这些文字将显示在组件默认插槽内
-    <span class="token operator">&lt;</span>template v<span class="token operator">-</span>slot<span class="token punctuation">:</span>footer<span class="token operator">></span>
-      这里的文字会显示在组件的具名插槽内
-    <span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
-    <span class="token operator">&lt;</span>template v<span class="token operator">-</span>slot<span class="token punctuation">:</span>bottom<span class="token operator">=</span><span class="token string">"scope"</span><span class="token operator">></span>
-      文字右边会有个颜色值 <span class="token operator">></span><span class="token operator">></span><span class="token operator">></span> <span class="token punctuation">{</span><span class="token punctuation">{</span>scope<span class="token punctuation">.</span>color<span class="token punctuation">}</span><span class="token punctuation">}</span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
-    <span class="token operator">&lt;</span>template v<span class="token operator">-</span>slot<span class="token punctuation">:</span>object<span class="token operator">=</span><span class="token string">"scope"</span><span class="token operator">></span>
-      文字右边会有多个数据 <span class="token operator">></span><span class="token operator">></span><span class="token operator">></span> 名字：<span class="token punctuation">{</span><span class="token punctuation">{</span>scope<span class="token punctuation">.</span>name<span class="token punctuation">}</span><span class="token punctuation">}</span>，年龄：<span class="token punctuation">{</span><span class="token punctuation">{</span>scope<span class="token punctuation">.</span>old<span class="token punctuation">}</span><span class="token punctuation">}</span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
-  <span class="token operator">&lt;</span><span class="token operator">/</span>Child<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
-<span class="token operator">&lt;</span>script<span class="token operator">></span>
-<span class="token keyword">import</span> Child <span class="token keyword">from</span> <span class="token string">'@/components/child.vue'</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
-  components<span class="token punctuation">:</span> <span class="token punctuation">{</span> Child <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 <span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span></code></pre>
 <script>
@@ -458,7 +453,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://localhost:4000/2020/11/19/vue/vue3.0%20%E6%8F%92%E6%A7%BD%E6%A8%A1%E6%9D%BF/">http://localhost:4000/2020/11/19/vue/vue3.0%20%E6%8F%92%E6%A7%BD%E6%A8%A1%E6%9D%BF/</a>
+                    <a href="http://localhost:4000/2020/11/19/vue/vue3.0%20%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E6%A8%A1%E6%9D%BF/">http://localhost:4000/2020/11/19/vue/vue3.0%20%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E6%A8%A1%E6%9D%BF/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -669,33 +664,32 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/11/19/vue/vue3.0%20%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E6%A8%A1%E6%9D%BF/">
+                <a href="/2020/12/07/java/%E5%B0%8F%E6%8A%80%E5%B7%A7/%E4%BC%98%E9%9B%85%E8%AE%B0%E5%BD%95%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E5%B7%A5%E5%85%B7/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="vue3.0 函数组件模板">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="优雅记录程序执行时间工具">
                         
-                        <span class="card-title">vue3.0 函数组件模板</span>
+                        <span class="card-title">优雅记录程序执行时间工具</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            // 函数式组件， 该组件会返回鼠标在屏幕上的坐标值
-// toFefs 是将 reactive 对象的所有 key 都转化为 ref 值
-// 这样，在引入使用的组件中，就可以 用 const { x, y } = xx 来使用这些 ke
+                            在spring.core包中有一个叫StopWatch的工具。用来记录程序的执行时间，通过该工具类，我们可以很优雅的记录或者打印执行时间日志
+在springboot启动日志中时常能见到这么一行打印springboot启动时长的日志，那么他是
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-19
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-07
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/vue/" class="post-category">
-                                    vue
+                            <a href="/categories/java/" class="post-category">
+                                    java
                                 </a>
                             
                             
@@ -705,8 +699,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/vue/">
-                        <span class="chip bg-color">vue</span>
+                    <a href="/tags/spring/">
+                        <span class="chip bg-color">spring</span>
+                    </a>
+                    
+                    <a href="/tags/StopWatch/">
+                        <span class="chip bg-color">StopWatch</span>
                     </a>
                     
                 </div>
@@ -720,24 +718,25 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/11/19/vue/vue3.0%20%E5%AD%90%E7%88%B6%E7%BA%A7%E4%BC%A0%E9%80%92%E6%A8%A1%E6%9D%BF/">
+                <a href="/2020/11/19/vue/vue3.0%20%E6%8F%92%E6%A7%BD%E6%A8%A1%E6%9D%BF/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="vue3.0 子父级传递模板">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="vue3.0 插槽模板">
                         
-                        <span class="card-title">vue3.0 子父级传递模板</span>
+                        <span class="card-title">vue3.0 插槽模板</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            template>
-  &lt;div
-    class="my-button"
-    :class="[
-        type ? `my-button-type-${type}` : '',
-        size ? `my
+                            &lt;template>
+  &lt;table>
+    &lt;tr>
+      &lt;th>默认插槽：&lt;/th>
+      &lt;td>&lt;slot />&lt;/td>
+    &lt;/tr>
+    &lt;
                         
                     </div>
                     <div class="publish-info">

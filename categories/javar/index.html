@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="分类: docker, Liscva Blogs">
+    <meta name="keywords" content="分类: javar, Liscva Blogs">
     <meta name="description" content="个人博客网站">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>分类: docker | Liscva Blogs</title>
+    <title>分类: javar | Liscva Blogs</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -300,7 +300,7 @@
                 
                 <a href="/categories/docker/" title="docker: 4">
                     <span class="chip center-align waves-effect waves-light
-                             chip-active "
+                             chip-default "
                             style="background-color: #F8F9F9;">docker
                         <span class="tag-length">4</span>
                     </span>
@@ -327,7 +327,7 @@
                 
                 <a href="/categories/javar/" title="javar: 1">
                     <span class="chip center-align waves-effect waves-light
-                             chip-default "
+                             chip-active "
                             style="background-color: #A3E4D7;">javar
                         <span class="tag-length">1</span>
                     </span>
@@ -374,32 +374,34 @@
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2021/01/25/docker/docker%E5%AE%89%E8%A3%85redis/">
+                    <a href="/2021/01/26/java/%E5%B0%8F%E6%8A%80%E5%B7%A7/centos%E4%B8%8B%E6%9B%BF%E6%8D%A2jar%E5%86%85%E9%83%A8%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95/">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="docker安装redis">
+                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="centos下替换jar内部文件的方法">
                             
-                            <span class="card-title">docker安装redis</span>
+                            <span class="card-title">centos下替换jar内部文件的方法</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                docker run -p 6379:6379 -d redis:latest redis-server
-docker run -p 6379:6379 -v $PWD/redisData:/data  -d redis:3.2 redis
+                                如何在centos下不上传jar从而替换jar内部文件的方法
+背景spring boot项目，使用jar方式打包部署
+需求有时候我们需要替换项目中某个引用jar，又不想将整个项目重新打包。
+问题通过一般方式，用好压等压缩软件直接打开jar包
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-26
                             </span>
                             <span class="publish-author">
                                 
                                 <i class="fas fa-bookmark fa-fw icon-category"></i>
                                 
-                                <a href="/categories/docker/" class="post-category">
-                                    docker
+                                <a href="/categories/javar/" class="post-category">
+                                    javar
                                 </a>
                                 
                                 
@@ -410,160 +412,12 @@ docker run -p 6379:6379 -v $PWD/redisData:/data  -d redis:3.2 redis
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/docker/">
-                            <span class="chip bg-color">docker</span>
+                        <a href="/tags/java/">
+                            <span class="chip bg-color">java</span>
                         </a>
                         
-                        <a href="/tags/redis/">
-                            <span class="chip bg-color">redis</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/01/11/docker/docker%E5%AE%89%E8%A3%85mysql/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="docker安装mysql">
-                            
-                            <span class="card-title">docker安装mysql</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                docker run -p 3306:3306 --name mymysql -v $PWD/mysql/conf:/etc/mysql/conf.d -v $PWD/mysql/logs:/logs -v $PWD/mysql/data:
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-11
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/docker/" class="post-category">
-                                    docker
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/docker/">
-                            <span class="chip bg-color">docker</span>
-                        </a>
-                        
-                        <a href="/tags/mysql/">
-                            <span class="chip bg-color">mysql</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/12/21/docker/harbor%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93%E5%AE%89%E8%A3%85/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="harbor私有仓库安装">
-                            
-                            <span class="card-title">harbor私有仓库安装</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                一.docker-compose安装
-#下载安装包
-sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(unam
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-21
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/docker/" class="post-category">
-                                    docker
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/harbor/">
-                            <span class="chip bg-color">harbor</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/12/21/docker/centos7%E4%B8%8B%E5%AE%89%E8%A3%85docker/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="centos7下安装docker">
-                            
-                            <span class="card-title">centos7下安装docker</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                1.更新yum包到最新，速度慢可以更换国内yum源
-yum update 
-2.如果之前安装过旧版本，先卸载掉
-yum remove docker  docker-common docker-selinux docker-engine
-3.
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-21
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/docker/" class="post-category">
-                                    docker
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/docker/">
-                            <span class="chip bg-color">docker</span>
+                        <a href="/tags/jar/">
+                            <span class="chip bg-color">jar</span>
                         </a>
                         
                     </div>
